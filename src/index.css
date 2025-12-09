@@ -1,0 +1,34 @@
+/* 1️⃣ Import Google Fonts first */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Outfit:wght@100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import "tailwindcss";
+
+* {
+  font-family: 'Outfit', sans-serif;
+}
+
+@media (min-width: 425px) {
+  .panleresponsive {
+    flex-direction: row;
+  }
+    .btnbox{
+    flex-direction: column;
+  }
+}
+@media (max-width: 424px) {
+  .panleresponsive {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0px;
+  }
+  .panleresponsive img{
+    width: 100px;
+  }
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
