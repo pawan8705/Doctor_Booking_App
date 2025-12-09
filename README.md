@@ -15,8 +15,8 @@ Doctor Appointment App ek modern, responsive aur user-friendly web application h
 ## ✨ Features
 
 1. 🔐 Authentication
-  A. Secure login & signup using Firebase Auth.
-  B. Real-time session handling.
+[ Secure login & signup using Firebase Auth. ||
+ Real-time session handling. ]
 
 2. 💎 Responsive & Modern UI
   A. Fully responsive design (mobile → tablet → desktop).
@@ -34,4 +34,5 @@ Doctor Appointment App ek modern, responsive aur user-friendly web application h
 
 A. Appointment booking
 B. User-friendly flow
+
 
