@@ -31,9 +31,9 @@ Doctor Appointment App ek modern, responsive aur user-friendly web application h
   B. Appointment data real-time sync. ]
 
 5. 🩺 Doctor Appointment System
-
 [ Appointment booking ||
  User-friendly flow. ]
+
 
 
 
