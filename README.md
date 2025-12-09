@@ -19,20 +19,21 @@ Doctor Appointment App ek modern, responsive aur user-friendly web application h
  Real-time session handling. ]
 
 2. 💎 Responsive & Modern UI
-  A. Fully responsive design (mobile → tablet → desktop).
-  B. Tailwind CSS se modern, clean components.
+[ Fully responsive design (mobile → tablet → desktop). ||
+ Tailwind CSS se modern, clean components. ]
 
 3. 🌙 Light / Dark Mode
-  A. Toggle system.
-  B. Theme saved in local storage.
+[ Toggle system. ||
+ Theme saved in local storage. ]
 
 4. ☁️ Backend
-  A. Firebase Firestore database.
-  B. Appointment data real-time sync.
+[ Firebase Firestore database. ||
+  B. Appointment data real-time sync. ]
 
 5. 🩺 Doctor Appointment System
 
-A. Appointment booking
-B. User-friendly flow
+[ Appointment booking ||
+ User-friendly flow. ]
+
 
 
