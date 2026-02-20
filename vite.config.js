@@ -6,18 +6,13 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,jsx}"],
-<<<<<<< HEAD
   theme: {
-=======
-  theme:{
->>>>>>> a804c7db11d813328e4793d69d89d01794980851
     extend: {},
   },
   plugins: [
     react(),
     tailwindcss(),
   ],
-<<<<<<< HEAD
   build: {
     // ✅ Split vendor chunks — browser caches React/Firebase separately
     rollupOptions: {
@@ -45,6 +40,4 @@ export default defineConfig({
       'lucide-react',
     ],
   },
-=======
->>>>>>> a804c7db11d813328e4793d69d89d01794980851
 })
