@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Slide from "../components/Slide";
@@ -240,25 +239,3 @@ const Home = () => {
 };
 
 export default Home;
-=======
-import React from 'react'
-import Header from '../components/Header'
-import FindBySpeciality from '../components/FindBySpeciality'
-import Appointment from '../components/Appointment'
-import TopDoctors from '../components/TopDoctors'
-
-const Home = () => {
-    return (
-    <div>
-        <div className="mt-20">
-            <Header/>
-        </div>
-        <FindBySpeciality />
-        <TopDoctors />
-        <Appointment/>
-    </div>
-    )
-}
-
-export default Home
->>>>>>> a804c7db11d813328e4793d69d89d01794980851
