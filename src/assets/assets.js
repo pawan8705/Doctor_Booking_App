@@ -1,5 +1,4 @@
 import appointment_img from './appointment_img.png'
-import header_img from './FirstBanner.webp'
 import group_profiles from './group_profiles.png'
 import contact_image from './contact_image.png'
 import about_image from './about_image.png'
