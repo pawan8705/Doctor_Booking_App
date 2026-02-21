@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect, useCallback, memo } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, Sun, Moon, User, LogOut, Calendar, ChevronDown } from "lucide-react";
 import { useAuth } from "../context/authContext";
+import { useTheme } from "../context/ThemeContext";
 import { assets } from "../assets/assets";
 
 const NAV_ITEMS = [
@@ -22,24 +23,14 @@ const Navbar = () => {
   const navigate                      = useNavigate();
   const location                      = useLocation();
   const { user, logout }              = useAuth();
+  const { darkMode, toggleTheme }     = useTheme(); // ✅ shared context
 
-  // ✅ darkMode initialised once, no unnecessary state updates
-  const [darkMode, setDarkMode] = useState(() => {
-    const stored = localStorage.getItem("theme");
-    const isDark = stored === "dark";
-    if (isDark) document.documentElement.classList.add("dark");
-    else        document.documentElement.classList.remove("dark");
-    return isDark;
-  });
-
-  // ✅ Passive scroll — doesn't block main thread
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e) => {
       if (profileRef.current && !profileRef.current.contains(e.target))
@@ -49,17 +40,7 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => { setOpen(false); setProfileOpen(false); }, [location.pathname]);
-
-  const toggleTheme = useCallback(() => {
-    setDarkMode((prev) => {
-      const next = !prev;
-      if (next) { document.documentElement.classList.add("dark");    localStorage.setItem("theme", "dark"); }
-      else      { document.documentElement.classList.remove("dark"); localStorage.setItem("theme", "light"); }
-      return next;
-    });
-  }, []);
 
   const handleLogout = useCallback(async () => {
     await logout();
@@ -83,11 +64,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
 
         {/* Logo */}
-        <Link
-          to="/"
-          className="flex items-center gap-2 hover:opacity-90 transition-opacity"
-          aria-label="HealthCare home"
-        >
+        <Link to="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity" aria-label="HealthCare home">
           <img
             src={assets.logo}
             alt="HealthCare Logo"
@@ -116,14 +93,14 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {/* Dark mode */}
+          {/* ✅ Theme toggle — now uses shared context */}
           <button
             onClick={toggleTheme}
             className="ml-2 p-2.5 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all"
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
           >
             {darkMode
-              ? <Sun  size={18} className="text-yellow-500" />
+              ? <Sun size={18} className="text-yellow-500" />
               : <Moon size={18} className="text-gray-600" />}
           </button>
 
@@ -143,8 +120,13 @@ const Navbar = () => {
                 <ChevronDown size={14} className={`transition-transform duration-200 ${profileOpen ? "rotate-180" : ""}`} />
               </button>
 
+              {/* ✅ will-change: transform — GPU composite layer */}
               {profileOpen && (
-                <div className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 py-2 z-50" role="menu">
+                <div
+                  className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 py-2 z-50"
+                  style={{ willChange: "transform, opacity" }}
+                  role="menu"
+                >
                   <div className="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
                     <p className="text-xs text-gray-400">Signed in as</p>
                     <p className="text-sm font-semibold text-gray-800 dark:text-white truncate">{user.email}</p>
@@ -198,16 +180,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu — CSS transition, no JS height calculation */}
+      {/* Mobile menu */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
         aria-hidden={!open}
       >
         <div className="bg-white dark:bg-gray-900 px-4 sm:px-6 pb-5 pt-2 flex flex-col gap-1 border-t border-gray-100 dark:border-gray-700">
           {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
+            <Link key={item.path} to={item.path}
               className={`px-4 py-3 text-sm font-medium rounded-xl transition-all ${
                 isActive(item.path)
                   ? "bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
@@ -217,9 +197,7 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
-
           <hr className="my-2 border-gray-100 dark:border-gray-700" />
-
           {user ? (
             <>
               <div className="px-4 py-2">
@@ -254,3 +232,4 @@ const Navbar = () => {
 };
 
 export default memo(Navbar);
+

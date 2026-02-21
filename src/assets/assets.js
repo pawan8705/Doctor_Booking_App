@@ -1,5 +1,5 @@
 import appointment_img from './appointment_img.png'
-import header_img from './header_img.png'
+import header_img from './FirstBanner.webp'
 import group_profiles from './group_profiles.png'
 import contact_image from './contact_image.png'
 import about_image from './about_image.png'
@@ -42,6 +42,11 @@ import Physician from './General_physician.svg'
 import Gynecologist from './Gynecologist.svg'
 import Neurologist from './Neurologist.svg'
 import Pediatricians from './Pediatricians.svg'
+import Cardiologist from './docicon1.png'
+import Orthopedic from './docicon2.png'
+import Psychiatrist from './docicon3.png'
+import Ophthalmologist from './docicon4.svg'
+
 
 // Admin & UI icons
 import add_icon from './add_icon.svg'
@@ -79,10 +84,10 @@ export const specialityData = [
     { speciality: 'Pediatricians', image: Pediatricians },
     { speciality: 'Neurologist', image: Neurologist },
     { speciality: 'Gastroenterologist', image: Gastroenterologist },
-    { speciality: 'Cardiologist', image: Gynecologist },
-    { speciality: 'Orthopedic', image: Dermatologist },
-    { speciality: 'Psychiatrist', image: Physician },
-    { speciality: 'Ophthalmologist', image: Neurologist },
+    { speciality: 'Cardiologist', image: Cardiologist },
+    { speciality: 'Orthopedic', image: Orthopedic },
+    { speciality: 'Psychiatrist', image: Psychiatrist },
+    { speciality: 'Ophthalmologist', image: Ophthalmologist },
 ]
 
 // ─── HELPER ──────────────────────────────────────────────────────────────────
